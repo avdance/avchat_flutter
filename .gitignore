@@ -1,0 +1,16 @@
+# Mac
+.DS_Store
+
+# Android
+gradle
+build
+
+# IOS
+Example
+Pods
+
+# Flutter
+library_flutter/ios_frameworks
+
+#IDE
+*.iml
