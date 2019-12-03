@@ -1,0 +1,7 @@
+include ':app'
+
+include ':library_origin',
+        ':library_widget',
+        ':library_xlog'
+
+include ':module_base'
