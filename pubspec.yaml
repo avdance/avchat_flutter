@@ -23,6 +23,8 @@ dependencies:
   dio: ^2.0.15
   pull_to_refresh: ^1.5.6
   flutter_spinkit: ^4.1.0
+  sqflite: ^1.1.7+3
+  path_provider: ^1.4.5
 
 dev_dependencies:
   flutter_test:
