@@ -1,8 +1,8 @@
 import 'package:avchat_flutter/event/event_bus.dart';
+import 'package:avchat_flutter/model/user_manager.dart';
 import 'package:event_bus/event_bus.dart';
 import 'package:fluro/fluro.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'utils/shared_preferences.dart';
 import 'routers/routes.dart';
 import 'routers/application.dart' show Application;
@@ -50,28 +50,8 @@ class _MyAppState extends State<MyApp> {
   showSplashPage() {
     if (_isFirstOpen) {
       return Container(
-        color: Color(mainColor),
         child: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              SpinKitCubeGrid(
-                color: Colors.white,
-                size: 100.0,
-                duration: const Duration(milliseconds: 1200),
-              ),
-              Padding(
-                padding: EdgeInsetsDirectional.only(top: 20.0),
-                child: Text(
-                  "AVChat",
-                  style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 16.0,
-                      fontWeight: FontWeight.bold),
-                ),
-              )
-            ],
-          ),
+          child: Container(height: 80.0,width: 80.0,child: Image.asset("assets/images/ic_app_logo.webp"),),
         ),
       );
     } else {
@@ -92,7 +72,13 @@ class _MyAppState extends State<MyApp> {
               body1: TextStyle(color: Colors.black, fontSize: 16.0)),
           iconTheme: IconThemeData(color: Color(mainColor), size: 35.0)),
       home: new Scaffold(
-        body: showSplashPage(),
+        body: Container(
+          decoration: BoxDecoration(
+              image: DecorationImage(
+                  image: AssetImage("assets/images/bg_splash_image.webp"),
+                  fit: BoxFit.cover)),
+          child: showSplashPage(),
+        ),
       ),
       onGenerateRoute: Application.router.generator,
     );
