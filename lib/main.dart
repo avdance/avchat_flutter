@@ -1,8 +1,8 @@
 import 'package:avchat_flutter/event/event_bus.dart';
 import 'package:avchat_flutter/model/user_manager.dart';
 import 'package:event_bus/event_bus.dart';
-import 'package:fluro/fluro.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'utils/shared_preferences.dart';
 import 'routers/routes.dart';
 import 'routers/application.dart' show Application;
@@ -11,10 +11,9 @@ SpUtil sharepre;
 
 class MyApp extends StatefulWidget {
   MyApp() {
-    final router = new Router();
-    Routers.configureRoutes(router);
+    var configure = Routers.configureRoutes();
     //set application
-    Application.router = router;
+    Application.router = configure;
   }
 
   @override
@@ -23,7 +22,6 @@ class MyApp extends StatefulWidget {
 
 //create state
 class _MyAppState extends State<MyApp> {
-  bool _isFirstOpen = true;
   int mainColor = 0xFF48B6FF;
 
   _MyAppState() {
@@ -38,30 +36,15 @@ class _MyAppState extends State<MyApp> {
     //初始化自己的一些其他东西
     _initSomethings();
 
-    //一些属性
-    //_isFirstOpen = sharepre.getBool(SharedPreferencesKeys.IS_FIRST_SHOW);
-
     //添加event的监听
     ApplicationEvent.event.on().listen((event) {
       print("Receive，event = $event");
     });
   }
 
-  showSplashPage() {
-    if (_isFirstOpen) {
-      return Container(
-        child: Center(
-          child: Container(height: 80.0,width: 80.0,child: Image.asset("assets/images/ic_app_logo.webp"),),
-        ),
-      );
-    } else {
-      //如果已经进入过，那么看这个人是否已经登录过了。
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
-    return new MaterialApp(
+    return MaterialApp(
       title: "AVChat",
       theme: new ThemeData(
           primaryColor: Color(mainColor),
@@ -71,16 +54,9 @@ class _MyAppState extends State<MyApp> {
               //default theme
               body1: TextStyle(color: Colors.black, fontSize: 16.0)),
           iconTheme: IconThemeData(color: Color(mainColor), size: 35.0)),
-      home: new Scaffold(
-        body: Container(
-          decoration: BoxDecoration(
-              image: DecorationImage(
-                  image: AssetImage("assets/images/bg_splash_image.webp"),
-                  fit: BoxFit.cover)),
-          child: showSplashPage(),
-        ),
-      ),
-      onGenerateRoute: Application.router.generator,
+      home: Application.router.buildPage(Routers.splash, null),
+      onGenerateRoute: (RouteSettings settings) =>
+          Application.generateRoute(settings),
     );
   }
 }
