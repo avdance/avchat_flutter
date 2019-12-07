@@ -1,13 +1,13 @@
+import 'package:avchat_flutter/api/http_request.dart';
 import 'package:avchat_flutter/event/event_bus.dart';
-import 'package:avchat_flutter/model/user_manager.dart';
 import 'package:event_bus/event_bus.dart';
 import 'package:flutter/material.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 import 'utils/shared_preferences.dart';
 import 'routers/routes.dart';
 import 'routers/application.dart' show Application;
 
 SpUtil sharepre;
+HttpRequest httpRequest;
 
 class MyApp extends StatefulWidget {
   MyApp() {
@@ -68,5 +68,6 @@ void _initSomethings() async {
 void main() async {
   //init sharepreferences
   sharepre = await SpUtil.getInstance();
+  httpRequest = HttpRequest();
   runApp(new MyApp());
 }
