@@ -6,12 +6,14 @@ import 'state.dart';
 Reducer<LoginState> buildReducer() {
   return asReducer(
     <Object, Reducer<LoginState>>{
-      LoginAction.action: _onAction,
+      LoginAction.password: _onPassword,
     },
   );
 }
 
-LoginState _onAction(LoginState state, Action action) {
+LoginState _onPassword(LoginState state, Action action) {
+  println("buildReducer  _onPassword");
   final LoginState newState = state.clone();
+  newState.isShowPwd = !newState.isShowPwd;
   return newState;
 }
