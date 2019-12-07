@@ -53,6 +53,7 @@ RegisterState _onContinues(RegisterState state, Action action) {
 
 RegisterState _onPwdError(RegisterState state, Action action) {
   final RegisterState newState = state.clone();
+  newState.isPasswordSuccess = false;
   //获取用户数据
   newState.userInfo.password = newState.pwdEditController.value.text;
   println("User = ${newState.userInfo.toJson()}");
