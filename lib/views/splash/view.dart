@@ -6,7 +6,6 @@ import 'state.dart';
 
 Widget buildView(SplashState state, Dispatch dispatch, ViewService viewService) {
   println("Splash --- buildView");
-  dispatch(SplashActionCreator.onInit());
   return new Scaffold(
     body: Container(
       decoration: BoxDecoration(

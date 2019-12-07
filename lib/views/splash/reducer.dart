@@ -9,17 +9,11 @@ import 'state.dart';
 Reducer<SplashState> buildReducer() {
   return asReducer(
     <Object, Reducer<SplashState>>{
-      SplashAction.init: _onInit,
       SplashAction.gone: _onGone
     },
   );
 }
 
-SplashState _onInit(SplashState state, Action action) {
-  println("Splash --- buildReducer  _onInit");
-  final SplashState newState = state.clone();
-  return newState;
-}
 
 SplashState _onGone(SplashState state, Action action) {
   println("Splash --- buildReducer  _onGone");

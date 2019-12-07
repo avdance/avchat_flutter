@@ -9,7 +9,7 @@ import 'state.dart';
 
 Effect<SplashState> buildEffect() {
   return combineEffects(<Object, Effect<SplashState>>{
-    SplashAction.init: _onInit,
+    Lifecycle.initState: _onInit,
     SplashAction.gone: _onGone,
   });
 }
