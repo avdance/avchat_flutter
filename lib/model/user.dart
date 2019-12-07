@@ -9,6 +9,7 @@ class User {
   String tableName;
   String headerImage;
   String createtime;
+  String phone;
   int loginStatus;
   int terminalType;
   int gender;
@@ -22,6 +23,7 @@ class User {
       this.terminalType,
       this.tableName,
       this.gender,
+      this.phone,
       this.headerImage,
       this.status,
       this.createtime});

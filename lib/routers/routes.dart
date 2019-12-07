@@ -1,6 +1,7 @@
 import 'package:avchat_flutter/store/state.dart';
 import 'package:avchat_flutter/store/store.dart';
 import 'package:avchat_flutter/views/login/page.dart';
+import 'package:avchat_flutter/views/register/page.dart';
 import 'package:avchat_flutter/views/splash/page.dart';
 import 'package:fish_redux/fish_redux.dart';
 
@@ -8,6 +9,7 @@ class Routers {
   static String splash = "/";
   static String login = "/login";
   static String home = "/home";
+  static String register = "/register";
 
   /// 创建应用的根 Widget
   /// 1. 创建一个简单的路由，并注册页面
@@ -18,7 +20,8 @@ class Routers {
       pages: <String, Page<Object, dynamic>>{
         //注册各个页面
         splash : SplashPage(),
-        login: LoginPage()
+        login: LoginPage(),
+        register: RegisterPage()
       },
       visitor: (String path, Page<Object, dynamic> page) {
         /// 只有特定的范围的 Page 才需要建立和 AppStore 的连接关系
