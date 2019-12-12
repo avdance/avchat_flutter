@@ -61,10 +61,10 @@ Widget buildView(LoginState state, Dispatch dispatch, ViewService viewService) {
                           ),
                           TextField(
                               keyboardType: TextInputType.number,
-                              inputFormatters: <TextInputFormatter>[
-                                WhitelistingTextInputFormatter.digitsOnly,
-                                LengthLimitingTextInputFormatter(11)
-                              ],
+                              // inputFormatters: <TextInputFormatter>[
+                              //   WhitelistingTextInputFormatter.digitsOnly,
+                              //   LengthLimitingTextInputFormatter(11)
+                              // ],
                               controller: state.nameEditController,
                               focusNode: state.focusNodeName,
                               autofocus: true,
