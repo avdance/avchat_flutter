@@ -1,4 +1,4 @@
-package io.avchat.mobile.flutter
+package com.example.avchat_flutter
 
 import android.os.Bundle
 
