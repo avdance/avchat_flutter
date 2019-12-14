@@ -9,7 +9,8 @@ Reducer<RegisterState> buildReducer() {
   return asReducer(
     <Object, Reducer<RegisterState>>{
       RegisterAction.next: _onContinues,
-      RegisterAction.password_error: _onPwdError
+      RegisterAction.password_error: _onPwdError,
+      RegisterAction.previous: _onPrevious
     },
   );
 }
@@ -48,6 +49,17 @@ RegisterState _onContinues(RegisterState state, Action action) {
     return newState;
   }
   newState.controller.jumpToPage(1);
+  return newState;
+}
+
+RegisterState _onPrevious(RegisterState state, Action action){
+  final RegisterState newState = state.clone();
+  newState.pwd2EditController.clear();
+  newState.pwdEditController.clear();
+  newState.phoneEditController.clear();
+  newState.nameEditController.clear();
+  newState.nickEditController.clear();
+  newState.controller.jumpToPage(0);
   return newState;
 }
 

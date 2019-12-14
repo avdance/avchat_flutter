@@ -1,11 +1,19 @@
 import 'package:fish_redux/fish_redux.dart';
 
 //TODO replace with your own action
-enum RegisterAction { next,register,password_error }
+enum RegisterAction { previous,next,register,password_error,backlogin }
 
 class RegisterActionCreator {
   static Action onNext() {
     return const Action(RegisterAction.next);
+  }
+
+  static Action onBackLogin() {
+    return const Action(RegisterAction.backlogin);
+  }
+
+  static Action onPrevious() {
+    return const Action(RegisterAction.previous);
   }
 
   static Action onRegister() {

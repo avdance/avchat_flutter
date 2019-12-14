@@ -137,27 +137,49 @@ generateUserPwd(RegisterState state, Dispatch dispatch) {
         Expanded(
           flex: 3,
           child: Container(
-            alignment: Alignment.center,
-            child: Padding(
-              padding: EdgeInsets.only(left: 40.0, right: 40.0),
-              child: GestureDetector(
-                onTap: () => dispatch(RegisterActionCreator.onNext()),
-                child: Container(
-                  height: 50.0,
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(2.0),
-                      gradient: const LinearGradient(
-                          colors: [Color(0xFF6a60ee), Color(0xFF56edff)])),
-                  child: Center(
-                    child: Text("继续",
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 21.0,
-                            fontWeight: FontWeight.bold)),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                Padding(
+                  padding: EdgeInsets.only(left: 40.0, right: 40.0),
+                  child: GestureDetector(
+                    onTap: () => dispatch(RegisterActionCreator.onNext()),
+                    child: Container(
+                      height: 50.0,
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(2.0),
+                          gradient: const LinearGradient(
+                              colors: [Color(0xFF6a60ee), Color(0xFF56edff)])),
+                      child: Center(
+                        child: Text("继续",
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 21.0,
+                                fontWeight: FontWeight.bold)),
+                      ),
+                    ),
                   ),
                 ),
-              ),
+                Container(
+                  margin: EdgeInsets.only(top: 12.0,right: 40.0),
+                  alignment: Alignment.centerRight,
+                  child: GestureDetector(
+                    //点击事件去注册
+                    onTap: () => dispatch(RegisterActionCreator.onBackLogin()),
+                    child: Text.rich(TextSpan(children: [
+                      TextSpan(
+                          text: "不用注册账号？",
+                          style: TextStyle(
+                              color: Colors.black45, fontSize: 14.0)),
+                      TextSpan(
+                          text: "去登录",
+                          style: TextStyle(
+                              color: Colors.lightBlue, fontSize: 14.0))
+                    ])),
+                  ),
+                )
+              ],
             ),
           ),
         )
@@ -221,9 +243,8 @@ generateUserInfo(RegisterState state, Dispatch dispatch) {
                         ),
                         TextField(
                             keyboardType: TextInputType.text,
-                            onChanged: (text) => {
-                              dispatch(RegisterActionCreator.onPwdError())
-                            },
+                            onChanged: (text) =>
+                                {dispatch(RegisterActionCreator.onPwdError())},
                             inputFormatters: <TextInputFormatter>[
                               LengthLimitingTextInputFormatter(20)
                             ],
@@ -245,9 +266,8 @@ generateUserInfo(RegisterState state, Dispatch dispatch) {
                                   color: Colors.black38, fontSize: 12.0)),
                         ),
                         TextField(
-                            onChanged: (text) => {
-                                dispatch(RegisterActionCreator.onPwdError())
-                            },
+                            onChanged: (text) =>
+                                {dispatch(RegisterActionCreator.onPwdError())},
                             keyboardType: TextInputType.text,
                             inputFormatters: <TextInputFormatter>[
                               LengthLimitingTextInputFormatter(20)
@@ -274,7 +294,8 @@ generateUserInfo(RegisterState state, Dispatch dispatch) {
                   child: GestureDetector(
                     onTap: () => state.isPasswordSuccess
                         ? dispatch(RegisterActionCreator.onRegister())
-                        : dispatch(RegisterActionCreator.onPwdError(flag: true)),
+                        : dispatch(
+                            RegisterActionCreator.onPwdError(flag: true)),
                     child: Container(
                       height: 50.0,
                       decoration: BoxDecoration(
@@ -304,7 +325,7 @@ LinearGradient handleBackground(bool enable) {
   if (enable) {
     return const LinearGradient(colors: [Color(0xFF6a60ee), Color(0xFF56edff)]);
   } else {
-    return const LinearGradient(colors: [Colors.black38,Colors.black38]);
+    return const LinearGradient(colors: [Colors.black38, Colors.black38]);
   }
 }
 
