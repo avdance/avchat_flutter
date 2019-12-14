@@ -3,6 +3,7 @@ import 'package:avchat_flutter/store/store.dart';
 import 'package:avchat_flutter/views/contacts/page.dart';
 import 'package:avchat_flutter/views/discover/page.dart';
 import 'package:avchat_flutter/views/login/page.dart';
+import 'package:avchat_flutter/views/main/page.dart';
 import 'package:avchat_flutter/views/message/page.dart';
 import 'package:avchat_flutter/views/profile/page.dart';
 import 'package:avchat_flutter/views/register/page.dart';
@@ -13,6 +14,7 @@ class Routers {
   static String splash = "/";
   static String login = "/login";
   static String register = "/register";
+  static String main = "/main";
   static String message = "/message";
   static String contacts = "/contacts";
   static String discover = "/discover";
@@ -29,6 +31,7 @@ class Routers {
         splash : SplashPage(),
         login: LoginPage(),
         register: RegisterPage(),
+        main: MainPage(),
         message: MessagePage(),
         contacts: ContactsPage(),
         discover: DiscoverPage(),

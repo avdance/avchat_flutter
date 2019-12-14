@@ -36,15 +36,16 @@ void _onLoginRequest(Action action, Context<LoginState> ctx) {
     'user_name': '${ctx.state.nameUser}',
     'password': '${ctx.state.passWord}',
     'token': 'wangzhumo'
-  }).then((response) => doLoginAction(response));
+  }).then((response) => doLoginAction(ctx.context,response));
 }
 
 //登录事件.
-doLoginAction(BaseResponse response) {
+doLoginAction(BuildContext ctx,BaseResponse response) {
   //1.更新token
   HttpRequest.updateToken(response.getToken());
   //2.记录用户数据,写入数据库
   UserManage.getInstance().saveUser(User.fromJson(response.getData()));
   //3.跳转到首页
   Fluttertoast.showToast(msg: response.getMessage());
+  Navigator.of(ctx).pushNamed('${Routers.main}',arguments: null);
 }

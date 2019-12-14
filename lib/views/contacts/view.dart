@@ -5,5 +5,8 @@ import 'action.dart';
 import 'state.dart';
 
 Widget buildView(ContactsState state, Dispatch dispatch, ViewService viewService) {
-  return Container();
+  return Container(
+    alignment: Alignment.center,
+    child: Text("ContactsPage")
+  );
 }
