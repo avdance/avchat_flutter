@@ -8,8 +8,11 @@ import 'package:fish_redux/fish_redux.dart';
 class Routers {
   static String splash = "/";
   static String login = "/login";
-  static String home = "/home";
   static String register = "/register";
+  static String message = "/message";
+  static String contacts = "/contacts";
+  static String discover = "/discover";
+  static String profile = "/profile";
 
   /// 创建应用的根 Widget
   /// 1. 创建一个简单的路由，并注册页面
