@@ -1,7 +1,4 @@
-import 'dart:async';
-
 import 'package:fish_redux/fish_redux.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 
 import 'action.dart';
 import 'state.dart';

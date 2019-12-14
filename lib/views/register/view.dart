@@ -294,8 +294,7 @@ generateUserInfo(RegisterState state, Dispatch dispatch) {
                   child: GestureDetector(
                     onTap: () => state.isPasswordSuccess
                         ? dispatch(RegisterActionCreator.onRegister())
-                        : dispatch(
-                            RegisterActionCreator.onPwdError(flag: true)),
+                        : dispatch(RegisterActionCreator.onPwdError(flag: true)),
                     child: Container(
                       height: 50.0,
                       decoration: BoxDecoration(

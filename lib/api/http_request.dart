@@ -1,6 +1,5 @@
 import 'dart:io';
 
-import 'package:avchat_flutter/api/api.dart';
 import 'package:avchat_flutter/api/base_response.dart';
 import 'package:dio/dio.dart';
 import 'package:fish_redux/fish_redux.dart';
