@@ -16,16 +16,18 @@ Effect<SplashState> buildEffect() {
 
 void _onInit(Action action, Context<SplashState> ctx) {
   println("Splash --- buildEffect  _onInit");
-  Fluttertoast.showToast(msg: "初始化/获取权限",toastLength: Toast.LENGTH_SHORT);
+  Fluttertoast.showToast(msg: "初始化/获取权限", toastLength: Toast.LENGTH_SHORT);
   ctx.dispatch(SplashActionCreator.onGone());
-  Fluttertoast.showToast(msg: "进入下一页");
 }
 
 void _onGone(Action action, Context<SplashState> ctx) {
   println("Splash --- buildEffect  _onGone");
-  Future.delayed(const Duration(milliseconds: 3000)).whenComplete((){
-    Navigator.of(ctx.context).pushNamed('${Routers.login}', arguments: null);
+  Future.delayed(const Duration(milliseconds: 2000)).whenComplete(() {
+    Fluttertoast.showToast(msg: "进入下一页");
+    if (ctx.state.isLogined) {
+      Navigator.of(ctx.context).pushNamed('${Routers.main}', arguments: null);
+    } else {
+      Navigator.of(ctx.context).pushNamed('${Routers.login}', arguments: null);
+    }
   });
 }
-
-
