@@ -167,7 +167,7 @@ Widget buildView(LoginState state, Dispatch dispatch, ViewService viewService) {
                                 color: Colors.lightBlue, fontSize: 14.0))
                       ])),
                     ),
-                  ),
+                  )
                 ],
               ),
             ),
