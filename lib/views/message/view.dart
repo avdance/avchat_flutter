@@ -4,9 +4,9 @@ import 'package:flutter/material.dart';
 import 'action.dart';
 import 'state.dart';
 
-Widget buildView(MessageState state, Dispatch dispatch, ViewService viewService) {
-  return Container(
-    alignment: Alignment.center,
-    child: Text("MessagePage"),
+Widget buildView(
+    MessageState state, Dispatch dispatch, ViewService viewService) {
+  return Scaffold(
+    appBar: AppBar(),
   );
 }
