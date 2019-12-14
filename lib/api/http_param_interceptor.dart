@@ -13,17 +13,22 @@ class ParamInterceptors extends InterceptorsWrapper {
     token = sharepre.getString(SharedPreferencesKeys.TOKEN);
   }
 
+
   @override
   onRequest(RequestOptions options) {
-    if(!TextUtils.isEmpty(token)){
-      println("ParamInterceptors add Token = $token");
-      options.uri.queryParameters.putIfAbsent("token", () => token);
-    }else{
-      //TODO 回调直接失败
-      //应该调起重新登录.
-      sharepre.putString(SharedPreferencesKeys.TOKEN, "");
-    }
+//    if(!TextUtils.isEmpty(token)){
+//      println("ParamInterceptors add Token = $token");
+//      options.uri.queryParameters.putIfAbsent("token", () => token);
+//    }else{
+//      //TODO 回调直接失败
+//      //应该调起重新登录.
+//      sharepre.putString(SharedPreferencesKeys.TOKEN, "");
+//    }
     return super.onRequest(options);
+  }
+
+  String getToken(){
+    return token;
   }
 
   ///更新Token

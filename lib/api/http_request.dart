@@ -60,7 +60,12 @@ class HttpRequest {
 
   ///统一请求
   Future<dynamic> _request(String url, {data, option}) async {
-    data = data ?? {};
+    if(data != null){
+      data['token'] = interceptors.getToken();
+    }else{
+      data = [];
+      data['token'] = interceptors.getToken();
+    }
     option = option ?? Options(method: GET);
 
     Dio dio = instance();
