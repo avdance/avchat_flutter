@@ -4,9 +4,8 @@ import 'state.dart';
 
 Effect<MessageState> buildEffect() {
   return combineEffects(<Object, Effect<MessageState>>{
-    MessageAction.action: _onAction,
+    MessageAction.action: _onActionAdd,
   });
 }
 
-void _onAction(Action action, Context<MessageState> ctx) {
-}
+void _onActionAdd(Action action, Context<MessageState> ctx) {}
