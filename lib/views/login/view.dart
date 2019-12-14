@@ -1,7 +1,6 @@
 import 'package:fish_redux/fish_redux.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 
 import 'action.dart';
 import 'state.dart';
@@ -65,6 +64,7 @@ Widget buildView(LoginState state, Dispatch dispatch, ViewService viewService) {
                               //   WhitelistingTextInputFormatter.digitsOnly,
                               //   LengthLimitingTextInputFormatter(11)
                               // ],
+                              onChanged: (text) => dispatch(LoginActionCreator.onLogin(isClick: false)),
                               controller: state.nameEditController,
                               focusNode: state.focusNodeName,
                               autofocus: true,
@@ -95,6 +95,7 @@ Widget buildView(LoginState state, Dispatch dispatch, ViewService viewService) {
                                   onPressed: () =>
                                       dispatch(LoginActionCreator.onPassword()),
                                 )),
+                                onChanged: (text) => dispatch(LoginActionCreator.onLogin(isClick: false)),
                                 style: const TextStyle(
                                     color: Colors.black, fontSize: 16.0),
                                 obscureText: state.isShowPwd,
@@ -131,15 +132,15 @@ Widget buildView(LoginState state, Dispatch dispatch, ViewService viewService) {
                   Padding(
                     padding: EdgeInsets.only(left: 40.0, right: 40.0),
                     child: GestureDetector(
-                      onTap: () => dispatch(LoginActionCreator.onLogin()),
+                      onTap: () => state.isCompleteInput?
+                      dispatch(LoginActionCreator.onLoginRequest()):
+                      dispatch(LoginActionCreator.onLogin(isClick: true)),
                       child: Container(
                         height: 50.0,
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(2.0),
-                            gradient: const LinearGradient(colors: [
-                              Color(0xFF6a60ee),
-                              Color(0xFF56edff)
-                            ])),
+                            gradient: handleBackground(state.isCompleteInput)
+                        ),
                         child: Center(
                           child: Text("登录",
                               textAlign: TextAlign.center,
@@ -176,4 +177,12 @@ Widget buildView(LoginState state, Dispatch dispatch, ViewService viewService) {
       ),
     ),
   );
+}
+
+LinearGradient handleBackground(bool enable) {
+  if (enable) {
+    return const LinearGradient(colors: [Color(0xFF6a60ee), Color(0xFF56edff)]);
+  } else {
+    return const LinearGradient(colors: [Colors.black38, Colors.black38]);
+  }
 }

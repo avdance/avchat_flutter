@@ -11,6 +11,10 @@ class LoginState implements GlobalBaseState,Cloneable<LoginState> {
   FocusNode focusNodePwd;
 
   bool isShowPwd;
+  bool isCompleteInput;
+
+  String nameUser;
+  String passWord;
 
   @override
   Color themeColor;
@@ -22,6 +26,9 @@ class LoginState implements GlobalBaseState,Cloneable<LoginState> {
     ..pwdEditController = pwdEditController
     ..focusNodeName = focusNodeName
     ..focusNodePwd = focusNodePwd
+    ..isCompleteInput = isCompleteInput
+    ..nameUser = nameUser
+    ..passWord = passWord
     ..isShowPwd = isShowPwd;
   }
 
@@ -35,5 +42,8 @@ LoginState initState(Map<String, dynamic> args) {
   state.focusNodeName = FocusNode();
   state.focusNodePwd = FocusNode();
   state.isShowPwd = true;
+  state.nameUser = null;
+  state.passWord = null;
+  state.isCompleteInput = false;
   return state;
 }
