@@ -1,6 +1,10 @@
 import 'package:avchat_flutter/store/state.dart';
 import 'package:avchat_flutter/store/store.dart';
+import 'package:avchat_flutter/views/contacts/page.dart';
+import 'package:avchat_flutter/views/discover/page.dart';
 import 'package:avchat_flutter/views/login/page.dart';
+import 'package:avchat_flutter/views/message/page.dart';
+import 'package:avchat_flutter/views/profile/page.dart';
 import 'package:avchat_flutter/views/register/page.dart';
 import 'package:avchat_flutter/views/splash/page.dart';
 import 'package:fish_redux/fish_redux.dart';
@@ -24,7 +28,11 @@ class Routers {
         //注册各个页面
         splash : SplashPage(),
         login: LoginPage(),
-        register: RegisterPage()
+        register: RegisterPage(),
+        message: MessagePage(),
+        contacts: ContactsPage(),
+        discover: DiscoverPage(),
+        profile: ProfilePage()
       },
       visitor: (String path, Page<Object, dynamic> page) {
         /// 只有特定的范围的 Page 才需要建立和 AppStore 的连接关系
