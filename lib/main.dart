@@ -68,6 +68,7 @@ void _initSomethings() async {
 void main() async {
   //TestWidgetsFlutterBinding.ensureInitialized();
   //init sharepreferences
+  WidgetsFlutterBinding.ensureInitialized();
   sharepre = await SpUtil.getInstance();
   httpRequest = HttpRequest();
   //WidgetsFlutterBinding.ensureInitialized();
