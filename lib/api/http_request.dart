@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:avchat_flutter/api/api.dart';
+import 'package:avchat_flutter/api/base_response.dart';
 import 'package:dio/dio.dart';
 import 'package:fish_redux/fish_redux.dart';
 
@@ -22,38 +23,57 @@ class HttpRequest {
   static const String PUT = 'put';
   static const String DELETE = 'delete';
 
-  Future<dynamic> get(String url, {data}) async {
-    _request(url, data: data, method: GET);
+  Future<BaseResponse> get(String url, {data}) async {
+    return _request(url, data: data, option: Options(method: GET))
+        .then((value) => composeResponse(value));
   }
 
-  Future<dynamic> post(String url, {data}) async {
-    _request(url, data: data, method: POST);
+  Future<BaseResponse> post(String url, {data}) async {
+    return _request(url,
+            data: data,
+            option: Options(
+                method: POST,
+                contentType:
+                    ContentType.parse("application/x-www-form-urlencoded")))
+        .then((value) => composeResponse(value));
   }
 
-  Future<dynamic> put(String url, {data}) async {
-    _request(url, data: data, method: PUT);
+  Future<BaseResponse> put(String url, {data}) async {
+    return _request(url, data: data, option: Options(method: PUT))
+        .then((value) => composeResponse(value));
   }
 
-  Future<dynamic> delete(String url, {data}) async {
-    _request(url, data: data, method: DELETE);
+  Future<BaseResponse> delete(String url, {data}) async {
+    return _request(url, data: data, option: Options(method: DELETE))
+        .then((value) => composeResponse(value));
+  }
+
+  /// compose response
+  BaseResponse composeResponse(dynamic value) {
+    if (value != null) {
+      BaseResponse response = BaseResponse.fromJson(value);
+      if (response != null) {
+        return response;
+      }
+    }
+    return new BaseResponse(-1, msg: "网络错误");
   }
 
   ///统一请求
-  Future<dynamic> _request(String url, {data, method}) async {
+  Future<dynamic> _request(String url, {data, option}) async {
     data = data ?? {};
-    method = method ?? 'GET';
+    option = option ?? Options(method: GET);
 
     Dio dio = instance();
 
     /// 打印请求相关信息：请求地址、请求方式、请求参数
-    println('Request Url : ' +  url);
+    println('Request Url : ' + url);
     println('Request Params : ' + data.toString());
 
     var result;
 
     try {
-      Response response = await dio.request(url,
-          data: data, options: Options(method: method));
+      Response response = await dio.request(url, data: data, options: option);
       result = response.data;
       println('Request Succeed.');
     } on DioError catch (e) {

@@ -22,11 +22,13 @@ class BaseResponse {
 
   bool isSuccessful() {
     println("msg = $msg  ,code = $code   errCode = $errCode");
-    if (code == 0 && errCode <= 0) {
-      return true;
-    } else if (code == 0 && errCode > 0) {
+    if (code == null && errCode > 0) {
       return false;
-    } else if (code < 0) {
+    }
+    if (errCode == null && code == 0) {
+      return true;
+    }
+    if (errCode == null && code == null) {
       return false;
     }
     return false;
