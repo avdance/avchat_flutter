@@ -10,8 +10,10 @@ Widget buildView(
   return Scaffold(
     appBar: AppBar(
       backgroundColor: Colors.white,
+      automaticallyImplyLeading: false,
       title: Text(
         state.getUnReadTitle(),
+        textAlign: TextAlign.start,
         style: TextStyle(color: Colors.black),
       ),
       actions: <Widget>[
