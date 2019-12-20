@@ -1,3 +1,6 @@
+import 'package:avchat_flutter/utils/date_fromat.dart';
+import 'package:fish_redux/fish_redux.dart';
+
 ///聊天条目信息
 class MessageSession {
   String sessionId;
@@ -9,6 +12,12 @@ class MessageSession {
   int last_time;
 
   String last_chat;
+
+  String getFormatTime(){
+    String time = DateUtils.formatChat(last_time);
+    println("时间格式化 : " + time);
+    return time;
+  }
 
   MessageSession(sessionId,
       {this.from_uid,
