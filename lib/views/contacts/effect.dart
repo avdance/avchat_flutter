@@ -20,31 +20,37 @@ void _initContact(Action action, Context<ContactsState> ctx) {
   model20.label = "Android";
 
   ContactItemModel model = ContactItemModel(11);
+  model.isDiv = false;
   model.niceName = "android";
   model.headerImage = "https://wangzhumo.com/img/android.png";
+
   ContactItemModel model2 = ContactItemModel(12);
-  model.niceName = "media";
-  model.headerImage = "https://wangzhumo.com/img/media.png";
+  model2.niceName = "media";
+  model2.headerImage = "https://wangzhumo.com/img/media.png";
 
 
   ContactItemModel model21 = ContactItemModel(21);
-  model20.isTitle = true;
-  model20.label = "音视频";
+  model21.isTitle = true;
+  model21.label = "音视频";
+
   ContactItemModel model3 = ContactItemModel(12);
-  model.niceName = "coding";
-  model.headerImage = "https://wangzhumo.com/img/coding.png";
+  model3.isDiv = false;
+  model3.niceName = "coding";
+  model3.headerImage = "https://wangzhumo.com/img/coding.png";
 
   ContactItemModel model4 = ContactItemModel(14);
-  model.niceName = "camera";
-  model.headerImage = "https://wangzhumo.com/img/camera.png";
+  model4.niceName = "camera";
+  model4.headerImage = "https://wangzhumo.com/img/camera.png";
 
 
   ContactItemModel model22 = ContactItemModel(22);
-  model20.isTitle = true;
-  model20.label = "FFmpeg";
+  model22.isTitle = true;
+  model22.label = "FFmpeg";
+
   ContactItemModel model5 = ContactItemModel(15);
-  model.niceName = "ffmpeg";
-  model.headerImage = "https://wangzhumo.com/img/ffmpeg.png";
+  model5.isDiv = false;
+  model5.niceName = "ffmpeg";
+  model5.headerImage = "https://wangzhumo.com/img/ffmpeg.png";
 
   initContact.add(ContactItemState(model: model20));
   initContact.add(ContactItemState(model: model));
