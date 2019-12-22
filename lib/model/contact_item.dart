@@ -4,7 +4,8 @@ import 'package:avchat_flutter/model/user.dart';
 class ContactItemModel extends User{
 
   String label;
-  bool isTitle;
+  bool isTitle = false;
+  bool isDiv = true;
 
   ContactItemModel(int uid) : super(uid);
 
