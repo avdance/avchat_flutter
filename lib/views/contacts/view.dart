@@ -7,6 +7,7 @@ import 'state.dart';
 
 Widget buildView(
     ContactsState state, Dispatch dispatch, ViewService viewService) {
+  final ListAdapter adapter = viewService.buildAdapter();
   return Scaffold(
     appBar: AppBar(
         backgroundColor: Colors.white,
@@ -34,6 +35,9 @@ Widget buildView(
         alignment: Alignment.centerRight,
         decoration: BoxDecoration(
             border: Border.all(width: 2.0, color: Colors.redAccent)),
-        child: IndexBarLayout()),
+        child: ListView.builder(
+          itemBuilder: adapter.itemBuilder,
+          itemCount: adapter.itemCount,
+        )),
   );
 }

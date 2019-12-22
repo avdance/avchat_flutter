@@ -1,6 +1,10 @@
+import 'package:avchat_flutter/model/contact_item.dart';
 import 'package:fish_redux/fish_redux.dart';
 
+import 'item/state.dart';
+
 class ContactsState extends MutableSource implements Cloneable<ContactsState> {
+  List<ContactItemState> mData;
 
   @override
   ContactsState clone() {
@@ -9,23 +13,23 @@ class ContactsState extends MutableSource implements Cloneable<ContactsState> {
 
   @override
   Object getItemData(int index) {
-    // TODO: implement getItemData
-    return null;
+    return mData[index];
   }
 
   @override
   String getItemType(int index) {
-    // TODO: implement getItemType
-    return null;
+    if (mData[index].itemModel.isTitle) {
+      return "title";
+    }
+    return "item";
   }
 
   @override
-  // TODO: implement itemCount
-  int get itemCount => null;
+  int get itemCount => mData?.length ?? 0;
 
   @override
   void setItemData(int index, Object data) {
-    // TODO: implement setItemData
+    mData[index] = data;
   }
 }
 

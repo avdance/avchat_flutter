@@ -4,6 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'state.dart';
 
+///Message list Item view
 Widget buildView(
     SessionItemState state, Dispatch dispatch, ViewService viewService) {
   return Column(

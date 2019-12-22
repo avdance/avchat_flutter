@@ -1,10 +1,12 @@
 import 'package:fish_redux/fish_redux.dart';
 
-//TODO replace with your own action
-enum ContactsAction { action }
+import 'item/state.dart';
+
+
+enum ContactsAction { onContactListInit }
 
 class ContactsActionCreator {
-  static Action onAction() {
-    return const Action(ContactsAction.action);
+  static Action onContactListInit(List<ContactItemState> lists) {
+    return Action(ContactsAction.onContactListInit,payload: lists);
   }
 }
