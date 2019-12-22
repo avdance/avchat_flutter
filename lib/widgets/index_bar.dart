@@ -60,8 +60,6 @@ class IndexBarLayout extends StatefulWidget {
   final TextStyle textStyleSelected;
 
   ///回调函数
-  final List<OnItemSelectedListener> _listeners =
-      new List<OnItemSelectedListener>();
   final OnItemSelectedListener onSelected;
 
   ///需要的参数
@@ -74,7 +72,7 @@ class IndexBarLayout extends StatefulWidget {
     this.color = Colors.transparent,
     this.textStyle = const TextStyle(fontSize: 11.0, color: Colors.black45),
     this.textStyleSelected =
-        const TextStyle(fontSize: 11.0, color: Colors.black),
+        const TextStyle(fontSize: 11.0, color: Colors.white),
   });
 
   @override
@@ -86,18 +84,15 @@ class IndexBarLayout extends StatefulWidget {
 ///整个Layout.
 class _IndexItemLayoutState extends State<IndexBarLayout> {
   List<Widget> _children = new List<Widget>();
-  int _selectedIndex;
 
-  int _getIndex(int offset) {
-    //根据位移获取到现在的Index.
-  }
+  int _selectedIndex = -1;
 
   @override
   Widget build(BuildContext context) {
     double layoutHeight = (widget.dataSet.length * widget.itemHeight);
     for (int index = 0; index < widget.dataSet.length; index++) {
       String strKey = widget.dataSet[index];
-      _children.add(ItemView(
+      _children.add(_ItemView(
         itemData: IndexItem(text: strKey, position: index, isSelected: false),
         itemHeight: widget.itemHeight,
         itemWidth: widget.itemWidth,
@@ -109,19 +104,45 @@ class _IndexItemLayoutState extends State<IndexBarLayout> {
       ));
     }
 
-    return Container(
-      width: widget.itemWidth,
-      height: layoutHeight,
-      alignment: Alignment.center,
-      child: Column(
-        children: _children,
+    ///加入回调
+    void OnSelectChanged(int localy) {
+      //获取到在这个View中按下的位置.
+      int offsetY = (localy / (widget.itemHeight)).toInt();
+
+      if (offsetY != _selectedIndex && offsetY < _children.length) {
+        //获取到这个被按下的位置
+        (_children[offsetY] as _ItemView).selectedChange(true);
+        if (_selectedIndex >= 0 && _children.length > _selectedIndex) {
+          (_children[_selectedIndex] as _ItemView).selectedChange(false);
+        }
+        _selectedIndex = offsetY;
+      }
+      if (widget.onSelected != null) {
+        widget.onSelected((_children[_selectedIndex] as _ItemView).itemData);
+      }
+    }
+
+    return GestureDetector(
+      onVerticalDragDown: (DragDownDetails details) {
+        OnSelectChanged(details.localPosition.dy.toInt());
+      },
+      onVerticalDragUpdate: (DragUpdateDetails details) {
+        OnSelectChanged(details.localPosition.dy.toInt());
+      },
+      child: Container(
+        width: widget.itemWidth,
+        height: layoutHeight,
+        alignment: Alignment.center,
+        child: Column(
+          children: _children,
+        ),
       ),
     );
   }
 }
 
 ///实际上每一条ItemView.
-class ItemView extends StatefulWidget {
+class _ItemView extends StatefulWidget {
   ///需要知道的字段有
   /// Index width
   final double itemWidth;
@@ -143,7 +164,7 @@ class ItemView extends StatefulWidget {
   final OnItemSelectedListener onSelected;
 
   ///需要的参数
-  ItemView({
+  _ItemView({
     Key key,
     @required this.itemData,
     this.onSelected,
@@ -153,19 +174,28 @@ class ItemView extends StatefulWidget {
     this.colorSelected = Colors.blue,
     this.textStyle = const TextStyle(fontSize: 11.0, color: Colors.black45),
     this.textStyleSelected =
-        const TextStyle(fontSize: 11.0, color: Colors.black),
+        const TextStyle(fontSize: 11.0, color: Colors.white),
   });
+
+  void selectedChange(bool isSelected) {
+    _currentState.setState(() {
+      itemData.isSelected = isSelected;
+    });
+  }
+
+  State<StatefulWidget> _currentState;
 
   @override
   State<StatefulWidget> createState() {
-    return ItemViewState();
+    _currentState = _ItemViewState();
+    return _currentState;
   }
 }
 
-class ItemViewState extends State<ItemView> {
+class _ItemViewState extends State<_ItemView> {
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
+    return Expanded(
       child: Container(
         alignment: Alignment.center,
         width: widget.itemWidth,
