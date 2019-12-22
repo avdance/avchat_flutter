@@ -1,8 +1,7 @@
-import 'package:avchat_flutter/model/contact_item.dart';
 import 'package:fish_redux/fish_redux.dart';
+import 'package:avchat_flutter/views/contacts/item/state.dart';
 
 import 'action.dart';
-import 'item/state.dart';
 import 'state.dart';
 
 Reducer<ContactsState> buildReducer() {

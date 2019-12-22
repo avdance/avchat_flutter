@@ -1,3 +1,4 @@
+import 'package:avchat_flutter/views/contacts/adapter/adapter.dart';
 import 'package:fish_redux/fish_redux.dart';
 
 import 'effect.dart';
@@ -13,10 +14,9 @@ class ContactsPage extends Page<ContactsState, Map<String, dynamic>> {
             reducer: buildReducer(),
             view: buildView,
             dependencies: Dependencies<ContactsState>(
-                adapter: null,
-                slots: <String, Dependent<ContactsState>>{
-                }),
-            middleware: <Middleware<ContactsState>>[
-            ],);
+                adapter: NoneConn<ContactsState>() + ContactItemAdapter(),
+                slots: <String, Dependent<ContactsState>>{}),
+            middleware: <Middleware<ContactsState>>[]
+  );
 
 }

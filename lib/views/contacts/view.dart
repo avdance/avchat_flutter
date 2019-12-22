@@ -1,8 +1,7 @@
-import 'package:avchat_flutter/widgets/index_bar.dart';
 import 'package:fish_redux/fish_redux.dart';
 import 'package:flutter/material.dart';
 
-import 'action.dart';
+
 import 'state.dart';
 
 Widget buildView(
@@ -32,9 +31,6 @@ Widget buildView(
               onPressed: () => {})
         ]),
     body: Container(
-        alignment: Alignment.centerRight,
-        decoration: BoxDecoration(
-            border: Border.all(width: 2.0, color: Colors.redAccent)),
         child: ListView.builder(
           itemBuilder: adapter.itemBuilder,
           itemCount: adapter.itemCount,
