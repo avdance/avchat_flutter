@@ -16,16 +16,16 @@ Widget _buildTitle(ContactItemState state){
   //如果是TIle
   return Container(
     alignment: Alignment.centerLeft,
-    height: 66.0,
+    height: 30.0,
     padding: EdgeInsets.only(left: 15.0),
     decoration: BoxDecoration(
       color: Colors.black12,
       border: Border(
-        top: BorderSide(color: Colors.black26,width: 0.5),
-        bottom: BorderSide(color: Colors.black26,width: 0.5)
+        top: BorderSide(color: Colors.black12,width: 0.5),
+        bottom: BorderSide(color: Colors.black12,width: 0.5)
       )
     ),
-    child:Text(state.itemModel.niceName,style: TextStyle(
+    child:Text(state.itemModel.label,style: TextStyle(
       color: Colors.black26,fontSize: 12.0
     )),
   );
