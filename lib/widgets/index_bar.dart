@@ -88,8 +88,8 @@ class _IndexItemLayoutState extends State<IndexBarLayout> {
   int _selectedIndex = -1;
 
   @override
-  Widget build(BuildContext context) {
-    double layoutHeight = (widget.dataSet.length * widget.itemHeight);
+  void initState() {
+    super.initState();
     for (int index = 0; index < widget.dataSet.length; index++) {
       String strKey = widget.dataSet[index];
       _children.add(_ItemView(
@@ -103,6 +103,11 @@ class _IndexItemLayoutState extends State<IndexBarLayout> {
         onSelected: widget.onSelected,
       ));
     }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    double layoutHeight = (widget.dataSet.length * widget.itemHeight);
 
     ///加入回调
     void OnSelectChanged(int localy) {
