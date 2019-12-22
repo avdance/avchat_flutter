@@ -8,6 +8,5 @@ import 'view.dart';
 export 'state.dart';
 
 class MessageSessionComponent extends Component<SessionItemState> {
-  MessageSessionComponent()
-      : super(view: buildView, effect: buildEffect(), reducer: buildReducer());
+  MessageSessionComponent() : super(view: buildView, effect: buildEffect(), reducer: buildReducer());
 }

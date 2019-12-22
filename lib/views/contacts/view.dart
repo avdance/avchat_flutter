@@ -7,9 +7,33 @@ import 'state.dart';
 
 Widget buildView(
     ContactsState state, Dispatch dispatch, ViewService viewService) {
-  return Container(
-      alignment: Alignment.centerRight,
-      decoration: BoxDecoration(
-          border: Border.all(width: 2.0, color: Colors.redAccent)),
-      child: IndexBarLayout());
+  return Scaffold(
+    appBar: AppBar(
+        backgroundColor: Colors.white,
+        automaticallyImplyLeading: false,
+        title: Text(
+          "联系人",
+          textAlign: TextAlign.start,
+          style: TextStyle(color: Colors.black),
+        ),
+        actions: <Widget>[
+          IconButton(
+              icon: Icon(
+                Icons.search,
+                color: Colors.black,
+              ),
+              onPressed: () => {}),
+          IconButton(
+              icon: Icon(
+                Icons.add_circle_outline,
+                color: Colors.black,
+              ),
+              onPressed: () => {})
+        ]),
+    body: Container(
+        alignment: Alignment.centerRight,
+        decoration: BoxDecoration(
+            border: Border.all(width: 2.0, color: Colors.redAccent)),
+        child: IndexBarLayout()),
+  );
 }
