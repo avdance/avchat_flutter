@@ -11,6 +11,7 @@ Widget buildView(
     appBar: AppBar(
       backgroundColor: Colors.white,
       automaticallyImplyLeading: false,
+      centerTitle: false,
       title: Text(
         state.getUnReadTitle(),
         textAlign: TextAlign.start,

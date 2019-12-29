@@ -1,12 +1,22 @@
 import 'package:avchat_flutter/model/session.dart';
+import 'package:avchat_flutter/routers/routes.dart';
 import 'package:avchat_flutter/views/message/item/state.dart';
 import 'package:fish_redux/fish_redux.dart';
+import 'package:flutter/widgets.dart' hide Action;
 import 'action.dart';
 import 'state.dart';
 
 Effect<MessageState> buildEffect() {
   return combineEffects(
-      <Object, Effect<MessageState>>{Lifecycle.initState: _initSession});
+      <Object, Effect<MessageState>>{
+        Lifecycle.initState: _initSession,
+        MessageAction.addaction : _AddFriend,
+      });
+}
+
+void _AddFriend(Action action, Context<MessageState> ctx){
+  //直接跳转
+  Navigator.of(ctx.context).pushNamed(Routers.add_friends);
 }
 
 void _initSession(Action action, Context<MessageState> ctx) {
