@@ -1,15 +1,24 @@
 import 'package:avchat_flutter/model/contact_item.dart';
+import 'package:avchat_flutter/routers/routes.dart';
 import 'package:avchat_flutter/views/contacts/item/state.dart';
 import 'package:fish_redux/fish_redux.dart';
+import 'package:flutter/widgets.dart' hide Action;
 import 'action.dart';
 import 'state.dart';
 
 Effect<ContactsState> buildEffect() {
   return combineEffects(<Object, Effect<ContactsState>>{
-    Lifecycle.initState: _initContact
+    Lifecycle.initState: _initContact,
+    ContactsAction.addFriend: _onAddFriend
   });
 }
 
+
+///跳转到添加好友页面
+void _onAddFriend(Action action, Context<ContactsState> ctx){
+  //直接跳转
+  Navigator.of(ctx.context).pushNamed(Routers.add_friends);
+}
 
 ///获取数据
 void _initContact(Action action, Context<ContactsState> ctx) {

@@ -11,6 +11,7 @@ Widget buildView(
     appBar: AppBar(
         backgroundColor: Colors.white,
         automaticallyImplyLeading: false,
+        centerTitle: false,
         title: Text(
           "联系人",
           textAlign: TextAlign.start,
